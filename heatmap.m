@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function heatmap(path_CAM,path_GSLVBO,path_mask)
 % clear
 %     clc
@@ -28,35 +27,4 @@ function heatmap(path_CAM,path_GSLVBO,path_mask)
             imwrite(heat_map,path3);
             
             end
-=======
-function heatmap(path_CAM,path_GSLVBO,path_mask)
-% clear
-%     clc
-        for i=0:499
-            for q =2*i:2*i+1
-            path1 = path_CAM+"/"+num2str(i)+"/"+num2str(q)+".png";
-            path2 = path_GSLVBO+"/"+num2str(i)+"/"+num2str(q)+".png";
-            path3 = path_mask +"/"+num2str(i)+"/"+num2str(q)+".png";
-            I = imread(path1);
-            heat_map = imread(path2);
-            %B = imresize(A,[224 NaN]);
-            % Simple, manual color thresholding   
-            %I(:,:,1)表示R通道；I(:,:,2)表示G通道；I(:,:3)表示B通道
-            %mask 阈值 为 0-255 分成 12 份 每份 20个点
-            mask1 = I(:,:,1) >160;
-
-
-            % Morphological processing
-            mask2 = imdilate(mask1, strel('disk',5,0)); %对图像实现膨胀操作
-            mask2 = imfill(mask2, 'holes');
-            %figure(2),imshow(mask2);
-
-            % Extract heat map
-            %heat_map = B;
-            heat_map(~repmat(mask2,[1 1 3])) = 255;
-            %imshow(heat_map)
-            imwrite(heat_map,path3);
-            
-            end
->>>>>>> 8616116aedaa6bdbb3c691c92d9bd8ce141bff0e
         end
